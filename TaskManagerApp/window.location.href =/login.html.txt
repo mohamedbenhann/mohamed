@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        /* نفس التنسيقات المستخدمة في sign-up.html */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تسجيل الدخول</h1>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+            <button type="submit">دخول</button>
+        </form>
+        <a href="sign-up.html">لا تملك حسابًا؟ سجل الآن</a>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // جلب البيانات من localStorage
+            const savedUser = JSON.parse(localStorage.getItem('user'));
+
+            if (savedUser && savedUser.email === email && savedUser.password === password) {
+                alert('تم تسجيل الدخول بنجاح!');
+                window.location.href = 'tasks.html';
+            } else {
+                alert('البريد الإلكتروني أو كلمة المرور غير صحيحة!');
+            }
+        });
+    </script>
+</body>
+</html>
